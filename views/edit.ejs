@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <style>
+        *{
+            font-family: "Poppins", sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="flex justify-center px-5 pt-20">
+        <div class="w-full max-w-5xl text-center p-5 rounded-md shadow border">
+            <h1 class="text-indigo-500 text-xl pb-4">Edit Employee</h1>
+            <form action="/update/<%= employee.id %>" method="POST">
+                <label for="firstName">First Name <span class="text-red-500">*</span></label><br>
+                <input type="text" id="firstName" name="firstName" class="border px-2 rounded-md w-full" value="<%= employee.first_name %>"><br>
+                <label for="lastName">Last Name <span class="text-red-500">*</span></label><br>
+                <input type="text" id="lastName" name="lastName" class="border px-2 rounded-md w-full" value="<%= employee.last_name %>"><br>
+                <label for="phoneNumber">Phone Number <span class="text-red-500">*</span></label><br>
+                <input type="text" id="phoneNumber" name="phoneNumber" pattern="[0-9]{9}" title="Phone number must be 9 digits" class="w-full border px-2 rounded-md" value="<%= employee.phone_number %>"><br>
+                <label for="job">Job <span class="text-red-500">*</span></label><br>
+                <input type="text" id="job" name="job" class="border px-2 rounded-md w-full"  value="<%= employee.job %>"><br>
+                <label for="salary">Salary <span class="text-red-500">*</span></label><br>
+                <input type="text" id="salary" name="salary" class="border px-2 rounded-md w-full" value="<%= employee.salary %>"><br><br>
+                <input type="submit" value="Submit" class="w-full rounded-md bg-indigo-500 text-white py-1 cursor-pointer border border-indigo-500 hover:bg-white hover:text-indigo-500 transition">
+            </form>
+        </div>
+    </div>
+
+    <div class="flex justify-center text-xs text-indigo-500 pt-5">
+        <a href="/">back to home</a>
+    </div>
+    
+</body>
+</html>

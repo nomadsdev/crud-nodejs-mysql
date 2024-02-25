@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <style>
+        *{
+            font-family: "Poppins", sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="flex justify-center px-5 pt-20">
+        <div class="w-full max-w-5xl text-center p-5 rounded-md shadow border">
+            <h1 class="text-indigo-500 text-xl pb-4">Add Employee</h1>
+            <form action="/add" method="post">
+                <label for="firstName">First Name <span class="text-red-500">*</span></label><br>
+                <input type="text" id="firstName" name="firstName" class="border px-2 rounded-md w-full"><br>
+                <label for="lastName">Last Name <span class="text-red-500">*</span></label><br>
+                <input type="text" id="lastName" name="lastName" class="border px-2 rounded-md w-full"><br>
+                <label for="phoneNumber">Phone Number <span class="text-red-500">*</span></label><br>
+                <input type="text" id="phoneNumber" name="phoneNumber" pattern="[0-9]{9}" title="Phone number must be 9 digits" class="w-full border px-2 rounded-md"><br>
+                <label for="job">Job <span class="text-red-500">*</span></label><br>
+                <input type="text" id="job" name="job" class="border px-2 rounded-md w-full"><br>
+                <label for="salary">Salary <span class="text-red-500">*</span></label><br>
+                <input type="text" id="salary" name="salary" class="border px-2 rounded-md w-full"><br><br>
+                <input type="submit" value="Submit" class="w-full rounded-md bg-indigo-500 text-white py-1 cursor-pointer border border-indigo-500 hover:bg-white hover:text-indigo-500 transition">
+            </form>
+        </div>
+    </div>
+
+    <div class="flex justify-center px-5 pt-5">
+      <div class="w-full max-w-5xl text-center">
+        <h1 class="text-indigo-500 text-xl pb-4">Employee List</h1>
+        <div class="flex justify-center">
+          <table class="border p-2 w-full">
+            <tr class="border p-2 text-indigo-500 font-thin">
+              <td class="border p-2">ID</td>
+              <td class="border p-2">First Name</td>
+              <td class="border p-2">Last Name</td>
+              <td class="border p-2">Phone Number</td>
+              <td class="border p-2">Job</td>
+              <td class="border p-2">Salary</td>
+              <td class="border p-2">Actions</td>
+            </tr>
+            <% employees.forEach(employee => { %>
+              <tr>
+                <td class="border p-2 text-indigo-500"><%= employee.id %></td>
+                <td class="border p-2"><%= employee.first_name %></td>
+                <td class="border p-2"><%= employee.last_name %></td>
+                <td class="border p-2"><%= employee.phone_number %></td>
+                <td class="border p-2"><%= employee.job %></td>
+                <td class="border p-2"><%= employee.salary %></td>
+                <td class="border p-2">
+                    <form action="/edit/<%= employee.id %>" method="GET">
+                        <button type="submit" class="border border-yellow-400 text-yellow-400 rounded-md px-4 text-sm">Edit</button>
+                    </form>
+                    <form action="/delete/<%= employee.id %>" method="POST">
+                        <button type="submit" class="border border-red-400 text-red-400 rounded-md px-4 text-sm">Delete</button>
+                    </form>
+                </td>
+              </tr>
+            <% }); %>
+          </table>  
+        </div>
+      </div>
+    </div>
+    
+</body>
+</html>
